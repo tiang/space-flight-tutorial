@@ -101,3 +101,37 @@ def create_master_table(
     master_table = with_companies.drop(["shuttle_id", "company_id"], axis=1)
     master_table = master_table.dropna()
     return master_table
+
+
+# Implementation of a sorting algorithm
+# Source: https://bosker.wordpress.com/2011/04/29/the-worst-algorithm-in-the-world/
+def _slowsort(values, i, j):
+    if i >= j:
+        return
+
+    # get the middle index
+    m = int((i + j) / 2)
+
+    # sort both sides of the middle of this index
+    _slowsort(values, i, m)
+    _slowsort(values, m + 1, j)
+
+    # if the RHS is less than the middle, swap places
+    if values[j] < values[m]:
+        k = values[m]
+        values[m] = values[j]
+        values[j] = k
+
+    # continue sorting (slowly!)
+    _slowsort(values, i, j - 1)
+
+
+def slowsort(values):
+    """
+    Slowly sort a sequence of values in place.
+    :param values: Sequence of values
+    """
+    _slowsort(values, 0, len(values) - 1)
+
+# def quantum_slowsort(values)    
+    # lets not go here....
