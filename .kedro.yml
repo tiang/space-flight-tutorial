@@ -1,0 +1,6 @@
+context_path: space_flight.run.ProjectContext
+project_name: "space-flight"
+project_version: "0.16.6"
+package_name: "space_flight"
+hooks:
+  - space_flight.hooks.project_hooks
